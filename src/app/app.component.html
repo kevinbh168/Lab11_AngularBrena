@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Administración de artículos</h1>
+    <table class="table table-striped table-dark" *ngIf="hayRegistros(); else sinproductos">
+      <thead class="thead-dark">
+      <tr>
+        <td>Código</td>
+        <td>Nombre</td>
+        <td>Precio</td>
+        <td>Borrar</td>
+        <td>Seleccionar</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of lista">
+        <td>{{producto.codigo}}</td>
+        <td>{{producto.descripcion}}</td>
+        <td>{{producto.precio}}</td>
+        <td><button (click)="eliminar(producto.codigo)" class="btn btn-primary">Borrar Datos?</button></td>
+        <td><button (click)="mostrar(producto.codigo)" class="btn btn-success">Modificar Datos</button></td>
+      </tr>
+    </tbody>
+    </table>
+    <ng-template #sinproductos><p>No hay productos</p></ng-template>
+    <div align="center" style="margin-top: 50px;">
+        <h1>Registro de Datos - Artículos</h1>
+            <div class="form-group">
+              <label>Descripción de Articulo:</label>
+              <input type="text" class="form-control mb-2" id="formGroupExampleInput" [(ngModel)]="prod.descripcion" style="width: 300px;">
+            </div>
+            <div class="form-group">
+              <label>Precio: </label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="prod.precio"  style="width: 300px;">
+            </div>
+            <div class="form-group">
+              <label>Imagen: </label>
+              <input type="file" class="form-control" id="formGroupExampleInput2" [(ngModel)]="prod.imagen"  style="width: 300px;">
+            </div>
+      <p><button (click)="nuevo()" class="btn btn-info">Agregar</button>
+      <button (click)="actualizar()" class="btn btn-info" style="margin-left: 10px;">Modificar</button></p>
+    </div>
+</div>
